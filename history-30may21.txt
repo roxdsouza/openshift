@@ -1,0 +1,228 @@
+    1  exit
+    2  ssh lab@utility
+    3  sudo shutdown -h now
+    4  ls
+    5  ssh lab@utility
+    6  ls
+    7  sudo su -
+    8  exit
+    9  lab auth-provider start
+   10  cat /usr/local/etc/ocp4.config
+   11  source /usr/local/etc/ocp4.config
+   12  oc login -u kubeadmin -p nIMBQ-ZoYZ5-UyS5D-oGTjF https://api.ocp4.example.com:6443
+   13  oc whoami
+   14  oc version
+   15  htpasswd -c -B -b /tmp/htpasswd job indionce
+   16  ls -lfrt
+   17  ls -l
+   18  ls -l /tmp/htpasswd 
+   19  htpasswd -b /tmp/htpasswd qwerty catalog
+   20  htpasswd -b /tmp/htpasswd john john123
+   21  htpasswd -b /tmp/htpasswd natasha natasha123
+   22  htpasswd -b /tmp/htpasswd harry harry123
+   23  htpasswd -b /tmp/htpasswd sarah sarah123
+   24  oc create secret generic ex280-idp-secret --from-file htpasswd=/tmp/htpasswd -n openshift-config
+   25  cat /tmp/htpasswd 
+   26  cat /tmp/htpasswd | wc
+   27  oc get secret ex280-idp-secret
+   28  oc get secrets ex280-idp-secret
+   29  oc get secrets
+   30  oc get secrets ex280-idp-secret -n openshift-config
+   31  oc get oauth cluster
+   32  oc get oauth cluster -o yaml 
+   33  oc get oauth cluster -o json
+   34  oc get oauth cluster -o yaml > /tmp/oauth.yaml
+   35  vi /tmp/oauth.yaml 
+   36  cat /tmp/oauth.yaml 
+   37  oc replace -f /tmp/oauth.yaml 
+   38  oc get oauth cluster -o yaml 
+   39  oc new-project apollo
+   40  oc project
+   41  oc new-project test
+   42  oc new-project demo
+   43  oc project
+   44  oc get projects
+   45  oc adm policy add-cluster-role-to-user cluster-admin job
+   46  oc get users
+   47  oc get user
+   48  oc get identity
+   49  oc get identity -n openshift-config
+   50  oc get users
+   51  oc get user
+   52  cat /tmp/htpasswd 
+   53  oc get oauth cluster
+   54  oc get oauth cluster -o yaml
+   55  lab auth-provider finish
+   56  lab auth-rbac start
+   57  oc get users
+   58  htpasswd -c -B -b /tmp/htpasswd job indionce
+   59  cat /tmp/htpasswd 
+   60  oc get oauth cluster
+   61  oc get oauth cluster -o yaml
+   62  oc get users
+   63  oc get projects | grep -i apollo
+   64  oc get projects | grep -i test
+   65  oc get projects | grep -i demo
+   66  oc adm policy add-cluster-role-to-user cluster-admin job
+   67  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+   68  oc adm policy add-cluster-role-to-user self-provisioner sarah
+   69  oc adm policy remove-cluster-role-from-user self-provisioner natasha
+   70  oc adm policy add-role-to-user view natasha -n apollo
+   71  oc adm policy add-role-to-user edit natasha -n test
+   72  oc whoami
+   73  oc login -u admin -p redhat                                                          Active
+   74  oc login -u admin -p redhat https://api.ocp4.example.com:6443
+   75  oc whoami
+   76  oc get clusterterrolebinding -o wide | grep -E 'NAME|self-provisioner'
+   77  oc get clusterrolebinding -o wide | grep -E 'NAME|self-provisioner'
+   78  oc describe clusterrolebindings self-provisioners
+   79  oc describe clusterrolebinding self-provisioners
+   80  oc describe clusterrolebindings self-provisioner
+   81  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+   82  oc describe clusterrolebindings self-provisioner
+   83  oc describe clusterrolebindings self-provisioners
+   84  oc adm policy remove-cluster-role-from-group self-provisioners system:authenticated:oauth
+   85  oc describe clusterrolebindings self-provisioners
+   86  oc describe clusterrolebindings self-provisioner
+   87  oc get clusterrolebinding -o wide | grep -E 'NAME|self-provisioner'
+   88  oc adm policy remove-cluster-role-from-group self-provisioner system:authenticated:oauth
+   89  oc describe clusterrolebindings self-provisioners
+   90  oc describe clusterrolebindings self-provisioner
+   91  oc adm policy remove-cluster-role-from-group self-provisioners system:authenticated:oauth
+   92  oc describe clusterrolebindings self-provisioner
+   93  oc describe clusterrolebindings self-provisioners
+   94  oc login -u leader -p redhat
+   95  oc whoami
+   96  oc new-project test1
+   97  oc login -u admin -p redhat
+   98  oc policy add-role-to-user admin leader
+   99  oc adm groups new dev-group
+  100  oc get groups
+  101  oc adm groups new qa-group
+  102  oc get groups
+  103  oc adm groups add-users qa-group qa-engineer
+  104  oc get groups
+  105  oc get users
+  106  oc adm groups add-users dev-group developer
+  107  lab execute-troubleshoot start
+  108  cat /usr/local/etc/ocp4.config 
+  109  source /usr/local/etc/ocp4.config 
+  110  ls /usr/local/etc/
+  111  source /usr/local/etc/ocp4.defaults 
+  112  cat /usr/local/etc/ocp4.defaults 
+  113  source /usr/local/etc/ocp4.config 
+  114  cat /usr/local/etc/ocp4.config 
+  115  oc login -u kubeadmin -p ${RHT_OCP4_KUBEADM_PASSWD} https://api.ocp4.example.com:6443
+  116  oc whomai
+  117  oc whoami
+  118  oc get users
+  119  oc get projects
+  120  oc get nodes
+  121  oc adm top node
+  122  watch oc adm top node
+  123  oc describe node master01
+  124  oc get pods
+  125  oc get ns
+  126  oc get pod -n openshift-image-registry 
+  127  oc get pod -n openshift-image-registry --no-headers
+  128  oc get pod -n openshift-image-registry --no-header
+  129  oc get pod -n openshift-image-registry --no-headers
+  130  oc logs --tail 3 -n openshift-image-registry cluster-image-registry-operator-5f47f6fcf7-r8mq5
+  131  oc logs --tail 3 -n openshift-image-registry cluster-image-registry-operator-5f47f6fcf7-r8mq5 -c cluster-image-registry-operator
+  132  oc logs --tail 3 -n openshift-image-registry image-registry-64b69c4bf9-77nhg
+  133  oc logs --tail 1 -n openshift-image-registry image-registry-64b69c4bf9-77nhg
+  134  oc describe pod -n openshift-image-registry image-registry-64b69c4bf9-77nhg
+  135  oc adm node-logs --tail 1 -u kubelet master01
+  136  oc adm node-logs --tail 1 -u cri-o master01
+  137  oc debug node/master01
+  138  oc project execute-troubleshoot
+  139  oc project
+  140  oc get pod
+  141  oc status
+  142  oc get events
+  143  ls /tmp/
+  144  history > /tmp/history-30may21.txt
+  145  cat /tmp/history-30may21.txt 
+  146  oc get events
+  147  skopeo inspect docker://registry.access.redhat.com/rhscl/postgresq-96-rhel7:1
+  148  skopeo inspect docker://registry.access.redhat.com/rhscl/postgresql-96-rhel7:1
+  149  oc get status
+  150  oc status
+  151  oc edit deployment/psql
+  152  oc edit deployment/psql    -o yaml
+  153  oc describe deployment/psql -o yaml
+  154  oc get deployment/psql -o yaml
+  155  oc get deployment/psql -o yaml > /tmp/deploy.yaml
+  156  vi /tmp/deploy.yaml 
+  157  oc replace -f /tmp/deploy.yaml 
+  158  oc get events
+  159  oc get pods
+  160  oc status
+  161  oc get pods
+  162  lab execute-troubleshoot finish
+  163  history > /tmp/history-30may21.txt 
+  164  lab install-storage start
+  165  history
+  166  source /usr/local/etc/ocp4.config
+  167  oc login -u kubeadmin -p ${RHT_OCP4_KUBEADM_PASSWD} https://api.ocp4.example.com:6443
+  168  oc whoami
+  169  oc project | grep -i install
+  170  oc new-project install-storage
+  171  oc project | grep -i install
+  172  oc get projects | grep -i install
+  173  oc project
+  174  oc get storageclass
+  175  oc new-app --name postgresql-persistent --docker-image registry.redhat.io/rhel8/postgresql-12:1-43 -e POSTGRESQL_USER=redhat -e POSTGRESQL_PASSWORD=redhat123 -e POSTGRESQL_DATABASE=persistentdb
+  176  oc get apps
+  177  oc get all
+  178  ls
+  179  oc set volumes deployment/postgresql-persistent --add --name postgresql-storage --type pvc --claim-class nfs-storage --claim-mode rwo --claim-size 10Gi --mount-path /var/lib/pgsql --claim-name postgresql-storage
+  180  oc get all
+  181  oc get volumes
+  182  oc get volume
+  183  oc get pv
+  184  oc get pvc
+  185  oc get pv -o custom-columns=NAME:.metadata.name,CLAIM:.spec.claimRef.name
+  186  cd DO280/labs/install-storage/
+  187  ./init_data.sh 
+  188  ./check_data.sh 
+  189  history > /tmp/history-30may21.txt 
+  190  oc get pc
+  191  oc get pv
+  192  oc get pvc
+  193  oc get all
+  194  oc delete all -l app=postgresql-persistent
+  195  oc get all
+  196  oc get pvs
+  197  oc get pv
+  198  oc get pvc
+  199  pwd
+  200  ls
+  201  cat init_data.sh
+  202  cat init_data.sql 
+  203  ./check_data.sh 
+  204  cat check_data.sh 
+  205  oc get pods -o name -l deployment=postgresql-persistent
+  206  ./check_data.sh 
+  207  oc new-app --name postgresql-persistent2 --docker-image registry.redhat.io/rhel8/postgresql-12:1-43 -e POSTGRESQL_USER=redhat -e POSTGRESQL_PASSWORD=redhat123 -e POSTGRESQL_DATABASE=persistentdb
+  208  oc get pods -o name -l deployment=postgresql-persistent2
+  209  oc get pods
+  210  oc get pods -o name
+  211  ./check_data.sh 
+  212  oc set volumes deployment/postgresql-persistent2 --add --name postgresql-storage --type pvc --mount-path /var/lib/pgsql --claim-name postgresql-storage
+  213  ls /var/lib/psql
+  214  ls /var/lib/
+  215  cat /var/lib/psql
+  216  df -h
+  217  pwd
+  218  ./check_data.sh 
+  219  oc get all
+  220  oc delete all -l app=postgresql-persistent2
+  221  oc get pv
+  222  oc get pvc
+  223  oc delete pvc/postgresql-storage
+  224  oc get pvc
+  225  oc get pv
+  226  cd
+  227  lab install-storage finish
+  228  history > /tmp/history-30may21.txt 
